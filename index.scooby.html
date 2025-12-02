@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PASTELES PARA TU MEJOR AMIGO</title>
+    <base href="http://scooby.cakes/">
+    <link rel="canonical" href="http://scooby.cakes/">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', monospace, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #fff;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #e5e7eb;
+            z-index: 1000;
+            padding: 1rem 0;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: #2563eb;
+            text-decoration: none;
+        }
+
+        nav {
+            display: flex;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: #4b5563;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #2563eb;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(to bottom, #eff6ff, #fff);
+            padding: 6rem 1rem 4rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            color: #2563eb;
+            margin-bottom: 1.5rem;
+            font-weight: bold;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: #4b5563;
+            max-width: 48rem;
+            margin: 0 auto 2rem;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 0.75rem 2rem;
+            font-size: 1.125rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+            cursor: pointer;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: #2563eb;
+            color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-primary:hover {
+            background: #1d4ed8;
+        }
+
+        .btn-outline {
+            border: 2px solid #2563eb;
+            color: #2563eb;
+            background: transparent;
+        }
+
+        .btn-outline:hover {
+            background: #eff6ff;
+        }
+
+        .chevron {
+            position: absolute;
+            bottom: 2rem;
+            color: #9ca3af;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .nerd-badge {
+            position: fixed;
+            bottom: 1rem;
+            right: 1rem;
+            background: #1f2937;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            font-size: 0.875rem;
+            z-index: 999;
+        }
+
+        /* Section Styles */
+        section {
+            padding: 4rem 1rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            text-align: center;
+            color: #1f2937;
+            margin-bottom: 3rem;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: #6b7280;
+            margin-bottom: 3rem;
+            font-size: 1.125rem;
+        }
+
+        /* Grid Layouts */
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .grid-4 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        /* Cards */
+        .card {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 1rem;
+            padding: 2rem;
+            transition: all 0.3s;
+        }
+
+        .card:hover {
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-center {
+            text-align: center;
+        }
+
+        .icon-circle {
+            width: 4rem;
+            height: 4rem;
+            background: #dbeafe;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            color: #2563eb;
+            font-size: 2rem;
+        }
+
+        .card h3 {
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: #1f2937;
+            margin-bottom: 0.75rem;
+        }
+
+        .card p {
+            color: #6b7280;
+        }
+
+        /* Background Colors */
+        .bg-white {
+            background: white;
+        }
+
+        .bg-gradient {
+            background: linear-gradient(to bottom, #eff6ff, #fff);
+        }
+
+        /* Pricing Cards */
+        .pricing-card {
+            position: relative;
+        }
+
+        .pricing-card.featured {
+            border: 2px solid #2563eb;
+        }
+
+        .popular-badge {
+            position: absolute;
+            top: -1rem;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #2563eb;
+            color: white;
+            padding: 0.25rem 1rem;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+        }
+
+        .pricing-card h3 {
+            color: #2563eb;
+            font-size: 1.5rem;
+        }
+
+        .price {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #1f2937;
+            margin: 1rem 0;
+        }
+
+        .price-label {
+            font-size: 0.875rem;
+            color: #6b7280;
+            margin-bottom: 1rem;
+        }
+
+        /* Gallery */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .gallery-item {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 1rem;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+
+        .gallery-item:hover {
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 16rem;
+            object-fit: cover;
+        }
+
+        .gallery-caption {
+            padding: 1rem;
+            color: #6b7280;
+            font-size: 0.875rem;
+        }
+
+        /* Video Gallery */
+        .video-item {
+            position: relative;
+            cursor: pointer;
+        }
+
+        .video-item img {
+            height: 12rem;
+        }
+
+        .video-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s;
+        }
+
+        .video-item:hover .video-overlay {
+            background: rgba(0, 0, 0, 0.4);
+        }
+
+        .play-button {
+            width: 4rem;
+            height: 4rem;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #2563eb;
+            font-size: 2rem;
+        }
+
+        /* Delivery/Payment Pricing */
+        .price-highlight {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #2563eb;
+            text-align: center;
+        }
+
+        .badge {
+            display: inline-block;
+            background: #dcfce7;
+            color: #166534;
+            padding: 0.5rem 1rem;
+            border-radius: 9999px;
+            font-weight: 600;
+            margin-bottom: 2rem;
+        }
+
+        /* Contact Section */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .contact-icon {
+            color: #2563eb;
+            font-size: 1.5rem;
+        }
+
+        .testimonial {
+            background: #eff6ff;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin-top: 2rem;
+            font-style: italic;
+            color: #4b5563;
+        }
+
+        /* Form */
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 500;
+            color: #374151;
+            margin-bottom: 0.5rem;
+            font-size: 0.875rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.5rem 0.75rem;
+            border: 1px solid #d1d5db;
+            border-radius: 0.375rem;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #2563eb;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        .form-group textarea {
+            min-height: 8rem;
+            resize: vertical;
+        }
+
+        .btn-submit {
+            width: 100%;
+            background: #2563eb;
+            color: white;
+            padding: 0.75rem;
+            border: none;
+            border-radius: 0.375rem;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .btn-submit:hover {
+            background: #1d4ed8;
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(to right, #1f2937, #1e3a8a);
+            color: white;
+            padding: 3rem 1rem;
+            text-align: center;
+        }
+
+        footer a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        footer a:hover {
+            color: #93c5fd;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+            font-size: 0.875rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .btn-group {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-content">
+            <a href="#home" class="logo">
+                 <img src="C:\Users\Alumno08\Downloads\IMG_7951 (1).PNG" alt="Logo" style="width: 80px; height: 80px;">
+            Scooby Cakes 
+                </a>
+            <nav>
+                <a href="#home">Inicio</a>
+                <a href="#about">Sobre Nosotros</a>
+                <a href="#products">Productos</a>
+                <a href="#contact">Contacto</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <h1>PASTELES PARA TU MEJOR AMIGO</h1>
+            <p>
+                Deliciosos Pasteles Hechos Con Amor Para Celebrar Los Cumpleaños Y Momentos Especiales De Tus Perritos.
+                ¡Ingredientes Naturales Y Sin Gluten Para Colas Felices!
+
+            </p>
+            <div class="btn-group">
+                <a href="#products" class="btn btn-primary">Ver Nuestros Pasteles</a>
+                <a href="#contact" class="btn btn-outline">Pedir Personalizado</a>
+            </div>
+        </div>
+        <div class="chevron">▼</div>
+    </section>
+
+      <!-- Why Choose Us Section -->
+    <section id="about" class="bg-white">
+        <div class="container">
+            <h2 class="section-title">Por Qué Elegir Nuestros Pasteles?</h2>
+            <div class="grid-3">
+                <div class="card card-center">
+                    <div class="icon-circle">❤️</div>
+                    <h3>Hechos con Amor</h3>
+                    <p>
+                        Cada pastel es horneado a mano con ingredientes frescos y naturales,
+                        pensando en la salud y felicidad de tu perrito.
+                    </p>
+                </div>
+                <div class="card card-center">
+                    <div class="icon-circle">✨</div>
+                    <h3>Para Todos los Perritos</h3>
+                    <p>
+                        Desde cachorritos hasta senior dogs, nuestros pasteles son seguros y
+                        deliciosos para razas grandes y pequeñas.
+                    </p>
+                </div>
+                <div class="card card-center">
+                    <div class="icon-circle">🛡️</div>
+                    <h3>Calidad Garantizada</h3>
+                    <p>
+                        Libres de azúcares dañinos, colorantes y conservantes.
+                        Solo lo mejor para las fiestas de cola!
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products" class="bg-gradient">
+        <div class="container">
+            <h2 class="section-title">NUESTROS DELICIOSOS PASTELES POR TAMAÑO</h2>
+            <div class="grid-3">
+                <div class="card pricing-card">
+                    <h3>  Pastel Pequeño</h3>
+                    <p>
+                        Ideal para un solo perrito consentido, celebra su día con porción justa de felicidad.
+                    </p>
+                    <p class="price-label">Para: 1 perro</p>
+                    <p class="price">$140</p>
+                </div>
+                <div class="card pricing-card featured">
+                    <div class="popular-badge">Más Popular</div>
+                    <h3>Pastel Mediano</h3>
+                    <p>
+                        Perfecto para dos amigos peludos compartiendo la diversión en una mini-fiesta.
+                    </p>
+                    <p class="price-label">Para: 2 perros</p>
+                    <p class="price">$230</p>
+                </div>
+                <div class="card pricing-card">
+                    <h3>Pastel Grande</h3>
+                    <p>
+                        Para una camada o cuatro perritos juguetones, suficiente para lamerse los bigotes de alegría.
+                    </p>
+                    <p class="price-label">Para: 4 perros</p>
+                    <p class="price">$350</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Photo Gallery Section -->
+    <section class="bg-white">
+        <div class="container">
+            <h2 class="section-title">Galería de Delicias Reales para Perritos</h2>
+            <p class="section-subtitle">
+                Fotos auténticas de nuestros pasteles en acción. Mira cómo hacen felices a los peludos y sus familias!
+            </p>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="C:\Users\Alumno08\Downloads\PHOTO-2025-11-07-18-45-45.jpg" alt="Pastel pequeño">
+                    <div class="gallery-caption">PASTEL DE CUMPLEAÑOS PARA 2 PERROS</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="C:\Users\Alumno08\Downloads\PHOTO-2025-11-20-09-19-23 3.jpg" alt="Pastel mediano">
+                    <div class="gallery-caption">AQUI TENEMOS A BAXTER PROBANDO EL PASTEL</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="C:\Users\Alumno08\Downloads\dog birthday cake.jpg" alt="Pastel grande">
+                    <div class="gallery-caption">PERRITO FELIZ CON SU PASTEL</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Delivery Options Section -->
+    <section class="bg-white">
+        <div class="container">
+            <h2 class="section-title">Opciones de Entrega Rápida y Segura</h2>
+            <div class="grid-3">
+                <div class="card card-center">
+                    <div class="icon-circle">🍰</div>
+                    <h3>Recogida en Tienda</h3>
+                    <p>
+                        Pasa por nuestro taller y llévate el pastel fresco, sin esperas ni costos extras!
+                        Ideal para colas impacientes.
+                    </p>
+                    <p class="price-label">Listo en 1-2 horas</p>
+                    <p class="price-highlight">Gratis</p>
+                </div>
+                <div class="card card-center">
+                    <div class="icon-circle">🚚</div>
+                    <h3>Entrega Local</h3>
+                    <p>
+                        Te lo llevamos a tu puerta en la ciudad, perfecto para fiestas sin mover el sofá.
+                        Envío fresco y seguro.
+                    </p>
+                    <p class="price-label">Mismo día o al siguiente</p>
+                    <p class="price-highlight">$20 - $40</p>
+                </div>
+            </div>
+            <p style="text-align: center; margin-top: 2rem; color: #6b7280;">
+                Preguntas sobre entrega? <a href="#contact" style="color: #2563eb; text-decoration: none;">Escríbenos</a>
+                y te ayudamos a planear la llegada perfecta.
+            </p>
+        </div>
+    </section>
+
+    <!-- Payment Methods Section -->
+    <section class="bg-gradient">
+        <div class="container">
+            <h2 class="section-title">Métodos de Pago Seguros y Fáciles</h2>
+            <p class="section-subtitle">
+                Elige cómo pagar por el pastel de tu perrito. Todo protegido como un hueso bien guardado, sin sorpresas malas!
+            </p>
+            <div style="text-align: center;">
+                <span class="badge">Pagos 100% seguros</span>
+            </div>
+            <div class="grid-3">
+                <div class="card card-center">
+                    <div class="icon-circle">💳</div>
+                    <h3>Tarjeta de Crédito/Débito</h3>
+                    <p>
+                        Paga rápido y seguro con Visa, MasterCard o cualquier tarjeta.
+                        Listo, pastel en camino sin dramas!
+                    </p>
+                    <p class="price-label">Aceptamos: Visa, MasterCard, Amex</p>
+                </div>
+                <div class="card card-center">
+                    <div class="icon-circle">🏦</div>
+                    <h3>Transferencia Bancaria</h3>
+                    <p>
+                        Para pedidos grandes o si prefieres lo clásico.
+                        Te enviamos los datos y confirmamos en minutos.
+                    </p>
+                    <p class="price-label">Aceptamos: Cualquier banco local</p>
+                </div>
+                <div class="card card-center">
+                    <div class="icon-circle">📱</div>
+                    <h3>Pago Móvil</h3>
+                    <p>
+                        Usa tu app favorita para pagar al instante.
+                        Perfecto para dueños modernos con perritos fashion.
+                    </p>
+                    <p class="price-label">Aceptamos: PayPal, Mercado Pago, Apple Pay</p>
+                </div>
+            </div>
+            <p style="text-align: center; margin-top: 2rem; color: #6b7280;">
+                Dudas con el pago? <a href="#contact" style="color: #2563eb; text-decoration: none;">Contáctanos</a>
+                y te guiamos paso a paso. Tu perrito te lo agradecerá con lametones!
+            </p>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="bg-white">
+        <div class="container">
+            <h2 class="section-title">Hablemos de Pasteles y Colas Felices!</h2>
+            <div class="contact-grid">
+                <div>
+                    <h3 style="font-size: 1.5rem; margin-bottom: 1.5rem;">Contáctanos</h3>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <div class="contact-icon">📧</div>
+                            <div>
+                                <p style="font-weight: 600; color: #1f2937;">Email</p>
+                                <p style="color: #6b7280;">scooby.cakes@gmail.com</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">📞</div>
+                            <div>
+                                <p style="font-weight: 600; color: #1f2937;">Teléfono</p>
+                                <p style="color: #6b7280;">+52 123 456 7890</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">📍</div>
+                            <div>
+                                <p style="font-weight: 600; color: #1f2937;">Ubicación</p>
+                                <p style="color: #6b7280;">Boulevar Ojo De Agua</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial">
+                        <p>"Mi labrador ladró de emoción al ver su pastel! 10/10" - Dueña feliz</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <form>
+                        <div class="form-group">
+                            <label>Nombre</label>
+                            <input type="text" placeholder="Tu nombre">
+                        </div>
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="email" placeholder="tu@email.com">
+                        </div>
+                        <div class="form-group">
+                            <label>Mensaje (Qué tipo de pastel sueñas?)</label>
+                            <textarea placeholder="Cuéntanos sobre tu perrito y qué pastel te gustaría..."></textarea>
+                        </div>
+                        <button type="submit" class="btn-submit">Enviar Mensaje</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p style="font-size: 1.125rem; margin-bottom: 0.5rem;">Hecho con amor para perritos felices.</p>
+            <p style="font-size: 0.875rem; color: #d1d5db;">© 2024 Scooby Cakes. Todos los derechos reservados.</p>
+            <div class="footer-links">
+                <a href="#privacy">Privacidad</a>
+                <a href="#terms">Términos</a>
+                <a href="#contact">Contacto</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Form submission
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('¡Gracias por tu mensaje! Te contactaremos pronto para crear el pastel perfecto para tu perrito.');
+            this.reset();
+        });
+    </script>
+</body>
+</html>
